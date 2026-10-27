@@ -49,7 +49,7 @@
                     <td>1</td>
                     <td>Administrator</td>
                     <td>admin</td>
-                    <td>admin@sppg.com</td>
+                    <td>adminstok@gmail.com</td>
                     <td>
                         <span class="badge bg-danger">
                             Admin
@@ -67,9 +67,9 @@
 
                 <tr>
                     <td>2</td>
-                    <td>Petugas Gudang</td>
-                    <td>gudang01</td>
-                    <td>gudang@sppg.com</td>
+                    <td>Kepala</td>
+                    <td>Kepala</td>
+                    <td>kepala@gmail.com</td>
                     <td>
                         <span class="badge bg-primary">
                             Petugas

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,18 +11,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
+        // Kepala Dapur
         \App\Models\User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('123')
+            'name' => 'Kepala Dapur',
+            'email' => 'kepala@gmail.com',
+            'password' => bcrypt('123'),
+            'role' => 1,
+        ]);
+
+        // Admin Stok
+        \App\Models\User::factory()->create([
+            'name' => 'Admin Stok',
+            'email' => 'adminstok@gmail.com',
+            'password' => bcrypt('123'),
+            'role' => 2,
         ]);
 
         $this->call([
             KategoriSeeder::class,
             SupplierSeeder::class,
-            BahanBakuSeeder::class
+            BahanBakuSeeder::class,
         ]);
     }
 }

@@ -563,14 +563,16 @@
             <div class="nav-section-label">Pengaturan</div>
 
             <li class="nav-item">
-                <form method="POST" action="" id="logoutForm">
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <a href="#" class="nav-link text-danger" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Logout</span>
-                    </a>
-                </form>
-            </li>
+                <button type="submit"
+                        class="nav-link text-danger border-0 w-100 text-start"
+                        style="background: transparent;">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
+        </li>
 
         </ul>
     </div>
@@ -649,10 +651,13 @@
                 <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Pengaturan</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item text-danger" href="#"
-                       onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
-                        <i class="bi bi-box-arrow-right me-2"></i>Logout
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="dropdown-item text-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i>
+                            Logout
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>

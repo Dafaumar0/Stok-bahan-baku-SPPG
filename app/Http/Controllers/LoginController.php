@@ -7,84 +7,41 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('login');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-   
-
     public function login(Request $request)
     {
-        // Validasi input
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
-        // Ambil data email & password
         $credentials = $request->only('email', 'password');
 
-        // Cek login
         if (Auth::attempt($credentials)) {
 
-            // Regenerate session
             $request->session()->regenerate();
 
-            // Redirect setelah login berhasil
             return redirect()->route('dashboard')
                 ->with('success', 'Login berhasil');
         }
 
-        // Jika login gagal
         return back()->withErrors([
-            'email' => 'Email atau password salah'
+            'email' => 'Email atau password salah',
         ])->withInput();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function logout(Request $request)
     {
-        //
-    }
+        Auth::logout();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect('/')
+            ->with('success', 'Berhasil logout');
     }
 }

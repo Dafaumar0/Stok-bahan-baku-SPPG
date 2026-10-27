@@ -489,7 +489,7 @@
                         <li><a href="{{route('supplier.index')}}" class="nav-link {{ Request::routeIs('master.supplier.*') ? 'active' : '' }}">
                             <span>Supplier</span>
                         </a></li>
-                        <li><a href="{{route('sekolah.index')}}" class="nav-link {{ Request::routeIs('master.sekolah.*') ? 'active' : '' }}">
+                        <li><a href="{{ route('sekolah.index') }}" class="nav-link {{ Request::routeIs('sekolah.*') ? 'active' : '' }}">
                             <span>Sekolah Penerima</span>
                         </a></li>
                     </ul>
@@ -551,7 +551,7 @@
                 </a>
                 <div class="collapse {{ Request::is('user-management/*') ? 'show' : '' }}" id="menuUser">
                     <ul class="sidebar-submenu">
-                        <li><a href="" class="nav-link {{ Request::routeIs('user-management.users.*') ? 'active' : '' }}">
+                        <li><a href="{{ route('user.index') }}"class="nav-link {{ Request::routeIs('user.*') ? 'active' : '' }}">
                             <span>Data User</span>
                         </a></li>
                         
@@ -563,14 +563,16 @@
             <div class="nav-section-label">Pengaturan</div>
 
             <li class="nav-item">
-                <form method="POST" action="" id="logoutForm">
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <a href="#" class="nav-link text-danger" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Logout</span>
-                    </a>
-                </form>
-            </li>
+                <button type="submit"
+                        class="nav-link text-danger border-0 w-100 text-start"
+                        style="background: transparent;">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
+        </li>
 
         </ul>
     </div>
@@ -649,10 +651,13 @@
                 <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Pengaturan</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item text-danger" href="#"
-                       onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
-                        <i class="bi bi-box-arrow-right me-2"></i>Logout
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="dropdown-item text-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i>
+                            Logout
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -669,16 +674,7 @@
         @yield('content')
     </div>
 
-    {{-- Footer --}}
-    <footer class="main-footer">
-        <span>
-            &copy; {{ date('Y') }} <a href="#">SPPG — Satuan Pelayanan Pemenuhan Gizi</a>.
-            All rights reserved.
-        </span>
-        <span class="d-none d-sm-block">
-            v1.0.0 &nbsp;·&nbsp; Dibuat oleh Tim IT Dinas Kesehatan
-        </span>
-    </footer>
+    
 
 </main>
 
